@@ -1,0 +1,23 @@
+{
+  "global_strategy": {
+    "volatility_breakout": {
+      "right": 0,
+      "wrong": 1
+    }
+  },
+  "regime_stats": {
+    "mid_vol|trending|neutral": {
+      "right": 0,
+      "wrong": 1
+    }
+  },
+  "symbol_strategy": {
+    "BTCUSD": {
+      "volatility_breakout": {
+        "right": 0,
+        "wrong": 1
+      }
+    }
+  },
+  "updated_at": "2026-07-25T19:34:55.043554+00:00"
+}

@@ -1,0 +1,9 @@
+date,symbol,direction,price,stop,target,confidence,active_strategy,source,sharpe,profit_factor,win_rate,max_drawdown,stability
+2026-07-25,BTCUSD,FLAT,104.89934,,,0.86,volatility_breakout,binance,1.352,1.183,0.5,-0.036,0.56
+2026-07-25,ETHUSD,FLAT,70.93988,,,0.646,momentum,binance,2.382,1.477,0.444,-0.038,0.504
+2026-07-25,SOLUSD,FLAT,83.22139,,,0.678,volatility_breakout,binance,0.723,1.091,0.533,-0.035,0.448
+2026-07-25,AAVEUSD,FLAT,103.24,,,0.659,volatility_breakout,binance,2.939,1.512,0.567,-0.025,0.606
+2026-07-25,AVAXUSD,FLAT,96.03325,,,0.655,trend_following,binance,2.844,1.451,0.467,-0.025,0.657
+2026-07-25,ICPUSD,FLAT,125.98887,,,0.618,trend_following,binance,1.174,1.18,0.567,-0.052,0.406
+2026-07-25,TONUSD,FLAT,103.10422,,,0.727,trend_following,binance,0.989,1.143,0.5,-0.053,0.495
+2026-07-25,HYPEUSD,FLAT,92.60944,,,0.665,volatility_breakout,binance,2.597,1.423,0.567,-0.049,0.687

@@ -1,0 +1,10 @@
+signal_date,symbol,source,strategy,direction,raw_direction,price,confidence,atr_pct,trend_slope,rsi,bb_width,regime_key,evaluated,outcome,next_return,signed_return,evaluated_at,notes
+2026-07-24,BTCUSD,binance,volatility_breakout,BUY,BUY,104.89934,0.86,0.010371,-0.001184,56.938,0.031986,mid_vol|trending|neutral,True,wrong,-0.006634,-0.006634,2026-07-25T19:34:55.034611+00:00,
+2026-07-25,BTCUSD,binance,volatility_breakout,FLAT,BUY,104.89934,0.86,0.010371,-0.001184,56.938,0.031986,mid_vol|trending|neutral,False,,,,,
+2026-07-25,ETHUSD,binance,momentum,FLAT,SELL,70.93988,0.646,0.008854,-0.022938,41.19,0.045059,low_vol|trending|neutral,False,,,,,
+2026-07-25,SOLUSD,binance,volatility_breakout,FLAT,BUY,83.22139,0.678,0.010751,0.00516,53.837,0.064597,mid_vol|trending|neutral,False,,,,,
+2026-07-25,AAVEUSD,binance,volatility_breakout,FLAT,SELL,103.24,0.659,0.011622,-0.021744,46.991,0.072655,mid_vol|trending|neutral,False,,,,,
+2026-07-25,AVAXUSD,binance,trend_following,FLAT,SELL,96.03325,0.655,0.009372,-0.021678,47.633,0.038351,low_vol|trending|neutral,False,,,,,
+2026-07-25,ICPUSD,binance,trend_following,FLAT,SELL,125.98887,0.618,0.011725,-0.02172,34.965,0.111208,mid_vol|trending|oversold,False,,,,,
+2026-07-25,TONUSD,binance,trend_following,FLAT,SELL,103.10422,0.727,0.010294,-0.002723,44.299,0.034158,mid_vol|trending|neutral,False,,,,,
+2026-07-25,HYPEUSD,binance,volatility_breakout,FLAT,BUY,92.60944,0.665,0.008914,0.018902,54.247,0.065413,low_vol|trending|neutral,False,,,,,
