@@ -1,23 +1,81 @@
 {
   "global_strategy": {
+    "momentum": {
+      "right": 1,
+      "wrong": 0
+    },
+    "trend_following": {
+      "right": 2,
+      "wrong": 1
+    },
     "volatility_breakout": {
       "right": 0,
-      "wrong": 1
+      "wrong": 5
     }
   },
   "regime_stats": {
+    "low_vol|trending|neutral": {
+      "right": 1,
+      "wrong": 2
+    },
     "mid_vol|trending|neutral": {
-      "right": 0,
-      "wrong": 1
+      "right": 1,
+      "wrong": 4
+    },
+    "mid_vol|trending|oversold": {
+      "right": 1,
+      "wrong": 0
     }
   },
   "symbol_strategy": {
-    "BTCUSD": {
+    "AAVEUSD": {
       "volatility_breakout": {
         "right": 0,
         "wrong": 1
       }
+    },
+    "AVAXUSD": {
+      "trend_following": {
+        "right": 0,
+        "wrong": 1
+      }
+    },
+    "BTCUSD": {
+      "volatility_breakout": {
+        "right": 0,
+        "wrong": 2
+      }
+    },
+    "ETHUSD": {
+      "momentum": {
+        "right": 1,
+        "wrong": 0
+      }
+    },
+    "HYPEUSD": {
+      "volatility_breakout": {
+        "right": 0,
+        "wrong": 1
+      }
+    },
+    "ICPUSD": {
+      "trend_following": {
+        "right": 1,
+        "wrong": 0
+      }
+    },
+    "SOLUSD": {
+      "volatility_breakout": {
+        "right": 0,
+        "wrong": 1
+      }
+    },
+    "TONUSD": {
+      "trend_following": {
+        "right": 1,
+        "wrong": 0
+      }
     }
   },
-  "updated_at": "2026-07-25T19:34:55.043554+00:00"
+  "updated_at": "2026-07-26T11:17:43.573745+00:00"
 }

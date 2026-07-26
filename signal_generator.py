@@ -853,18 +853,25 @@ def _get_next_bar_return(symbol, source, signal_date, demo, use_mt5, fmp_api_key
         seed = sum(ord(c) for c in symbol) % 1000
         df = generate_synthetic_data(bars=bars, seed=seed)
     else:
-        if symbol in CRYPTO:
-            if source == 'binance':
-                df = get_binance_data(BINANCE_SYMBOL_MAP.get(symbol, symbol), bars=bars)
-            elif source == 'fmp':
-                df = get_fmp_data(symbol, bars=bars, api_key=fmp_api_key)
+        try:
+            if symbol in CRYPTO:
+                if source == 'binance':
+                    df = get_binance_data(BINANCE_SYMBOL_MAP.get(symbol, symbol), bars=bars)
+                elif source == 'fmp':
+                    df = get_fmp_data(symbol, bars=bars, api_key=fmp_api_key)
+                else:
+                    df = get_mt5_data(symbol, bars=bars)
             else:
-                df = get_mt5_data(symbol, bars=bars)
-        else:
-            if source == 'fmp':
-                df = get_fmp_data(symbol, bars=bars, api_key=fmp_api_key)
-            else:
-                df = get_mt5_data(symbol, bars=bars)
+                if source == 'fmp':
+                    df = get_fmp_data(symbol, bars=bars, api_key=fmp_api_key)
+                else:
+                    df = get_mt5_data(symbol, bars=bars)
+        except requests.exceptions.RequestException as exc:
+            print(f"[WARN] Could not fetch {symbol} from {source} for review: {exc}")
+            return None
+        except Exception as exc:
+            print(f"[WARN] Unexpected error fetching {symbol} from {source} for review: {exc}")
+            return None
 
     df = df.copy()
     df['day'] = pd.to_datetime(df['date']).dt.date
