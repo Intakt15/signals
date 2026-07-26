@@ -917,6 +917,8 @@ def review_and_learn_signals(
         if signal_date >= datetime.date.today():
             continue
 
+        # Market data loaders surface unavailable sources via RequestException
+        # or RuntimeError; skip those rows so one bad source does not abort review.
         try:
             next_ret = _get_next_bar_return(
                 symbol=row['symbol'],
