@@ -908,7 +908,7 @@ def review_and_learn_signals(
 
     learning_state = load_learning_state(learning_state_path)
     pending_idx = journal.index[journal['evaluated'] == False]
-    reviewed = right = wrong = 0
+    reviewed = right = wrong = source_errors = 0
     threshold = min_move_bps / 10000.0
 
     for idx in pending_idx:
@@ -917,14 +917,25 @@ def review_and_learn_signals(
         if signal_date >= datetime.date.today():
             continue
 
-        next_ret = _get_next_bar_return(
-            symbol=row['symbol'],
-            source=row.get('source', 'mt5'),
-            signal_date=signal_date,
-            demo=demo,
-            use_mt5=use_mt5,
-            fmp_api_key=fmp_api_key,
-        )
+        try:
+            next_ret = _get_next_bar_return(
+                symbol=row['symbol'],
+                source=row.get('source', 'mt5'),
+                signal_date=signal_date,
+                demo=demo,
+                use_mt5=use_mt5,
+                fmp_api_key=fmp_api_key,
+            )
+        except (requests.exceptions.RequestException, RuntimeError, ValueError) as exc:
+            source_errors += 1
+            if 'notes' in journal.columns:
+                existing_raw = journal.at[idx, 'notes']
+                existing_note = '' if pd.isna(existing_raw) else str(existing_raw).strip()
+                err_note = (
+                    f"review_fetch_error[{row['symbol']} {signal_date}]: {exc}"
+                )
+                journal.at[idx, 'notes'] = f"{existing_note}; {err_note}" if existing_note else err_note
+            continue
         if next_ret is None:
             continue
 
@@ -966,8 +977,12 @@ def review_and_learn_signals(
         'reviewed': reviewed,
         'right': right,
         'wrong': wrong,
+        'source_errors': source_errors,
         'pending': pending_after,
-        'message': f"Reviewed {reviewed}, right {right}, wrong {wrong}, pending {pending_after}",
+        'message': (
+            f"Reviewed {reviewed}, right {right}, wrong {wrong}, "
+            f"source errors {source_errors}, pending {pending_after}"
+        ),
     }
 
 
