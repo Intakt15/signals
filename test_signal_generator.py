@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest import mock
 
 import pandas as pd
+import requests
 
 import signal_generator as sg
 
@@ -30,7 +31,7 @@ class ReviewAndLearnSignalsTests(unittest.TestCase):
             ]).to_csv(journal_path, index=False)
             learning_state_path.write_text(json.dumps({}), encoding="utf-8")
 
-            with mock.patch.object(sg, "_get_next_bar_return", side_effect=RuntimeError("boom")):
+            with mock.patch.object(sg, "_get_next_bar_return", side_effect=requests.ConnectionError("boom")):
                 summary = sg.review_and_learn_signals(
                     journal_path=str(journal_path),
                     learning_state_path=str(learning_state_path),

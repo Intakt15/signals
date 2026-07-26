@@ -926,7 +926,7 @@ def review_and_learn_signals(
                 use_mt5=use_mt5,
                 fmp_api_key=fmp_api_key,
             )
-        except Exception as exc:
+        except (ImportError, ModuleNotFoundError, requests.RequestException, RuntimeError) as exc:
             print(
                 f"Skipping review for {row['symbol']} on {signal_date} "
                 f"from {row.get('source', 'mt5')}: {exc}"
