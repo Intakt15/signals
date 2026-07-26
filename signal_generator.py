@@ -917,14 +917,23 @@ def review_and_learn_signals(
         if signal_date >= datetime.date.today():
             continue
 
-        next_ret = _get_next_bar_return(
-            symbol=row['symbol'],
-            source=row.get('source', 'mt5'),
-            signal_date=signal_date,
-            demo=demo,
-            use_mt5=use_mt5,
-            fmp_api_key=fmp_api_key,
-        )
+        # Market data loaders surface unavailable sources via RequestException
+        # or RuntimeError; skip those rows so one bad source does not abort review.
+        try:
+            next_ret = _get_next_bar_return(
+                symbol=row['symbol'],
+                source=row.get('source', 'mt5'),
+                signal_date=signal_date,
+                demo=demo,
+                use_mt5=use_mt5,
+                fmp_api_key=fmp_api_key,
+            )
+        except (requests.RequestException, RuntimeError) as exc:
+            print(
+                f"Skipping review for {row['symbol']} on {signal_date} "
+                f"from {row.get('source', 'mt5')}: {exc}"
+            )
+            continue
         if next_ret is None:
             continue
 
